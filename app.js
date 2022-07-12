@@ -3,7 +3,9 @@ const { UNSAFE_NavigationContext } = require("react-router-dom")
 const app = Express() // Invoke Express
 
 const PORT = process.env.PORT || 5000
-/* 
+
+/*  Original setup before rearranging per the lab requirements
+
 app.get('/', (req, res) => {
     res.send('Hello, home!')
 })
