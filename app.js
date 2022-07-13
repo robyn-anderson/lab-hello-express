@@ -1,8 +1,11 @@
 const Express = require("express") // Call Express
-const { UNSAFE_NavigationContext } = require("react-router-dom")
 const app = Express() // Invoke Express
 
 const PORT = process.env.PORT || 5000
+
+
+let staticServer = Express.static('public')
+app.use( staticServer )
 
 /*  Original setup before rearranging per the lab requirements
 
@@ -23,13 +26,25 @@ app.get('/cake', (req, res) => {
 }) 
 */
 
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + "/index.html")
+})
+
+app.get('/teatime', (req, res) => {
+    res.sendFile(__dirname + "/public/teatime.html")
+})
+
+app.get('/timeforwalkies', (req, res) => {
+    res.sendFile(__dirname + "/timeforwalkies.html")
+})
+
 app.get('/form', (req, res) => {
     res.send(`
     <form action="/welcome">
     <input type="text" placeholder="your name" name="name">
     <input type="submit">
     </form>`) 
-    res.send(`Welcome ${res.query.welcome.name}`) //! this is not working!
+    res.send(`Welcome ${res.query.welcome.name}`)
 })
 
 
